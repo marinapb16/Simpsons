@@ -2,7 +2,10 @@
 import requests
 import time
 import csv
+import os
+import shutil
 
+autores = []
 while True:
 
 
@@ -20,3 +23,33 @@ while True:
     # Obtenemos valor en la clave 'value' del JSON que nos interesa, en este caso la frase y la persona que lo dice
     frase_simpson: str = datos[0]['quote']
     autor: str = datos[0]['character']
+    imagen = datos[0]['image']
+
+    if autor in autores:
+        my_dict = {'quote': frase_simpson, 'character':autor} #escribo sobre el csv
+        with open('autor.csv', 'a') as csvfile:
+            w = csv.DictWriter(csvfile, my_dict.keys())
+
+            w.writerow(my_dict)
+    else:
+        #añado autor en la lista de autores
+        autores.append(autor)
+        #creo carpeta autor
+        directory = autor
+        parent_dir = 'C:\\Users\\Marina\\Downloads\\Simpsons\\LisaLevel'
+        path = os.path.join(parent_dir,directory)
+        os.mkdir(path)
+        #escribo csv con las frases
+        my_dict = {'quote': frase_simpson, 'character':autor} #escribo sobre el csv
+        with open('autor.csv', 'a') as csvfile:
+            w = csv.DictWriter(csvfile, my_dict.keys())
+
+            w.writerow(my_dict)
+        #muevo csv a la carpeta autor
+        shutil.move('autor.csv', 'LisaLevel/autor')
+
+        #descargar imagen
+        img_data = requests.get(imagen).content
+        with open('image_name.jpg', 'wb') as handler:
+            handler.write(img_data)
+
