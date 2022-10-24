@@ -27,7 +27,7 @@ while True:
 
     if autor in autores:
         my_dict = {'quote': frase_simpson, 'character':autor} #escribo sobre el csv
-        with open('autor.csv', 'a') as csvfile:
+        with open(autor +'.csv', 'a') as csvfile:
             w = csv.DictWriter(csvfile, my_dict.keys())
 
             w.writerow(my_dict)
@@ -41,15 +41,19 @@ while True:
         os.mkdir(path)
         #escribo csv con las frases
         my_dict = {'quote': frase_simpson, 'character':autor} #escribo sobre el csv
-        with open('autor.csv', 'a') as csvfile:
+        with open(autor +'.csv', 'a') as csvfile:
             w = csv.DictWriter(csvfile, my_dict.keys())
 
             w.writerow(my_dict)
         #muevo csv a la carpeta autor
-        shutil.move('autor.csv', 'LisaLevel/autor')
+        #no me hace bien el moverlo a la carpeta porque me deja de ser csv???
+        shutil.move(autor +'.csv', 'LisaLevel/autor')
 
         #descargar imagen
         img_data = requests.get(imagen).content
-        with open('image_name.jpg', 'wb') as handler:
+        with open(autor +'.png', 'wb') as handler:
             handler.write(img_data)
+        #mover imagen a la carpeta autor
+        #no me mueve bien la imagen a la carpeta
+        shutil.move(autor +'.png', 'LisaLevel/autor')
 
