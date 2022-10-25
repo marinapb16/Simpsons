@@ -4,22 +4,27 @@ import time
 import csv
 import os
 import shutil
+import string
 
 #función encontrada en internet que cuenta las ocurrencias de cada palabra en una frase dada
-def word_count(str):
-    counts = dict()
-    words = str.split()
+def word_count(frase,dicPalabras):
+    counts = dicPalabras 
+    words = frase.split() #separa las palabras cada vez que encuentra un espacio
 
-    for word in words:
-        if word in counts:
-            counts[word] += 1
+    for i in words:
+        if i in counts:
+            counts[i] += 1
         else:
-            counts[word] = 1
+            counts[i] = 1
 
     return counts
+#para entender que hace la función anterior 
+# frase = 'Hi, Homer. How are you?'
+#primera iteración bucle anterior -> counts: {'Hi, ':1}
+#segunda iteración bucle -> counts: {'Hi, ':1, 'Homer.':1}
 
 autores = []
-
+contar = dict()
 while True:
 
 
@@ -40,6 +45,18 @@ while True:
     imagen = datos[0]['image']
 
 
+    simbolos = '!"#$%&()*+,-./:;<=>?@[\]^_`{|}~'
+    #elimino los signos de puntuación de las frases para quedarme sólo con las palabras
+    new_frase = frase_simpson.translate(str.maketrans('', '', simbolos))
+    #variable que me va guardando la cuenta de las palabras de la frase simpson
+    contar = word_count(new_frase,contar) 
+
+    with open ('LisaLevel/ConteoPalabras.csv', 'w') as csv_file:
+        writer = csv.writer(csv_file)
+        for key, value in contar.items():
+            writer.writerow([key, value])
+
+    
     if autor in autores:
         #ruta de donde está la carpeta del autor
         direccion = 'C:\\Users\\Marina\\Downloads\\Simpsons\\LisaLevel'

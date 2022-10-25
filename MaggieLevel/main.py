@@ -21,6 +21,11 @@ while True:
     frase_simpson: str = datos[0]['quote']
     autor: str = datos[0]['character']
 
+    my_dict = {'quote': frase_simpson, 'character':autor}
+    with open('General/general.csv', 'a') as csvfile:
+            w = csv.DictWriter(csvfile, my_dict.keys())
+
+            w.writerow(my_dict)
 
     #creamos bucle para clasificar según la frase sea de Lisa, Homer o del resto
     if autor == 'Lisa Simpson':
@@ -37,14 +42,8 @@ while True:
 
             w.writerow(my_dict)
 
-    else:
-      
-        my_dict = {'quote': frase_simpson, 'character':autor}
-        with open('General/general.csv', 'a') as csvfile:
-            w = csv.DictWriter(csvfile, my_dict.keys())
-
-            w.writerow(my_dict)
 
     time.sleep(3) 
 
 
+#COMPROBAR QUE FUNCIONA AHORA Y METE FRASES DE LISA Y HOMER EN TODOS
