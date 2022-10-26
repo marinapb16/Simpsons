@@ -17,7 +17,8 @@ while True:
     # a través del método de la clase response.json()
     datos = respuesta.json() 
 
-    # Obtenemos valor en la clave 'value' del JSON que nos interesa, en este caso la frase y la persona que lo dice
+    # Obtenemos valor en la clave 'value' del JSON que nos interesa
+    #  en este caso la frase y la persona que lo dice
     frase_simpson: str = datos[0]['quote']
     autor: str = datos[0]['character']
 

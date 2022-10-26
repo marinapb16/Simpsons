@@ -6,7 +6,7 @@ import os
 import shutil
 import string
 
-#función encontrada en internet que cuenta las ocurrencias de cada palabra en una frase dada
+#función que cuenta las ocurrencias de cada palabra en una frase dada
 def word_count(frase,dicPalabras):
     counts = dicPalabras 
     words = frase.split() #separa las palabras cada vez que encuentra un espacio
@@ -39,7 +39,8 @@ while True:
     # a través del método de la clase response.json()
     datos = respuesta.json() 
 
-    # Obtenemos valor en la clave 'value' del JSON que nos interesa, en este caso la frase y la persona que lo dice
+    # Obtenemos valor en la clave 'value' del JSON que nos interesa
+    # en este caso la frase, la persona que lo dice y su respectiva imagen
     frase_simpson: str = datos[0]['quote']
     autor: str = datos[0]['character']
     imagen = datos[0]['image']
@@ -51,7 +52,7 @@ while True:
     #variable que me va guardando la cuenta de las palabras de la frase simpson
     contar = word_count(new_frase,contar) 
 
-
+    #creo un csv que me va a ir guardando este conteo
     with open ('ConteoPalabras/conteopalabras.csv', 'w') as csv_file:
         writer = csv.writer(csv_file)
         for key, value in contar.items():
@@ -59,8 +60,8 @@ while True:
 
     
     if autor in autores:
-        #ruta de donde está la carpeta del autor
-        #direccion = 'C:\\Users\\Marina\\Downloads\\Simpsons\\LisaLevel'
+        #si el autor ya ha salido antes
+        #voy a la ruta de donde está la carpeta del autor
         direccion = '/app'
         directory2 = autor
         path2 = os.path.join(direccion,directory2)
@@ -75,11 +76,11 @@ while True:
          csvfile.write(frase_simpson)
 
     else:
+        #si el autor no ha salido
         #añado autor en la lista de autores
         autores.append(autor)
         #creo carpeta autor
         directory = autor
-        #parent_dir = 'C:\\Users\\Marina\\Downloads\\Simpsons\\LisaLevel'
         parent_dir = '/app'
         path = os.path.join(parent_dir,directory)
         os.mkdir(path)
@@ -91,7 +92,6 @@ while True:
 
             w.writerow(my_dict)
         #muevo csv a la carpeta autor
-        #no me hace bien el moverlo a la carpeta porque me deja de ser csv???
         shutil.move(autor1, path)
 
         #descargar imagen
@@ -100,7 +100,6 @@ while True:
         with open(img, 'wb') as handler:
             handler.write(img_data)
         #mover imagen a la carpeta autor
-        #no me mueve bien la imagen a la carpeta
         shutil.move(img, path)
 
-    time.sleep(30)
+    time.sleep(30) #peticiones a la API cada 30 segundos
