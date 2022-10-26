@@ -61,7 +61,11 @@ docker exec -it <ID contenedor> bash #accedemos dentro del contenedor
 root@6fe7006f0b69:/app# 
 #hacemos listado del contenido dentro del contenedor
 root@6fe7006f0b69:/app# ls
-ConteoPalabras Dockerfile  main.py  requirements.txt 'Abe Simpson' 'Apu Nahasapeemapetilon' 'Bart Simpson' 'Chief Wiggum' 'Comic Book Guy' 'Dr. Nick' Duffman 'Frank Grimes' 'Groundskeeper Willie' 'Homer Simpson' 'Lisa Simpson' 'Marge Simpson' 'Mayor Quimby' 'Milhouse Van Houten' 'Moe Szyslak' 'Mr. Burns' 'Nelson Muntz' Otto 'Principal Skinner' 'Rainier Wolfcastle' 'Ralph Wiggum' 'Troy McClure' 'Waylon Smithers'
+ConteoPalabras Dockerfile  main.py  requirements.txt 'Abe Simpson' 'Apu Nahasapeemapetilon' 
+'Bart Simpson' 'Chief Wiggum' 'Comic Book Guy' 'Dr. Nick' Duffman 'Frank Grimes' 
+'Groundskeeper Willie' 'Homer Simpson' 'Lisa Simpson' 'Marge Simpson' 'Mayor Quimby' 
+'Milhouse Van Houten' 'Moe Szyslak' 'Mr. Burns' 'Nelson Muntz' Otto 'Principal Skinner' 
+'Rainier Wolfcastle' 'Ralph Wiggum' 'Troy McClure' 'Waylon Smithers'
 #para acceder dentro de la carpeta de cualquier personaje
 root@6fe7006f0b69:/app# cd 'Homer Simpson'
 root@264bc3fb2ff3:/app/Homer Simpson# 
