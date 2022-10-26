@@ -51,7 +51,8 @@ while True:
     #variable que me va guardando la cuenta de las palabras de la frase simpson
     contar = word_count(new_frase,contar) 
 
-    with open ('LisaLevel/ConteoPalabras.csv', 'w') as csv_file:
+
+    with open ('ConteoPalabras/conteopalabras.csv', 'w') as csv_file:
         writer = csv.writer(csv_file)
         for key, value in contar.items():
             writer.writerow([key, value])
@@ -59,7 +60,8 @@ while True:
     
     if autor in autores:
         #ruta de donde está la carpeta del autor
-        direccion = 'C:\\Users\\Marina\\Downloads\\Simpsons\\LisaLevel'
+        #direccion = 'C:\\Users\\Marina\\Downloads\\Simpsons\\LisaLevel'
+        direccion = '/app'
         directory2 = autor
         path2 = os.path.join(direccion,directory2)
         autor2 = autor +'.csv'
@@ -71,19 +73,14 @@ while True:
         with open(path3,"a") as csvfile:
          csvfile.write("\n")
          csvfile.write(frase_simpson)
-        
-       # my_dict = {'quote': frase_simpson, 'character':autor} #escribo sobre el csv
-       # with open(autor2, 'a') as csvfile:
-       #     w = csv.DictWriter(csvfile, my_dict.keys())
-
-        #    w.writerow(my_dict)
 
     else:
         #añado autor en la lista de autores
         autores.append(autor)
         #creo carpeta autor
         directory = autor
-        parent_dir = 'C:\\Users\\Marina\\Downloads\\Simpsons\\LisaLevel'
+        #parent_dir = 'C:\\Users\\Marina\\Downloads\\Simpsons\\LisaLevel'
+        parent_dir = '/app'
         path = os.path.join(parent_dir,directory)
         os.mkdir(path)
         #escribo csv con las frases
@@ -105,3 +102,5 @@ while True:
         #mover imagen a la carpeta autor
         #no me mueve bien la imagen a la carpeta
         shutil.move(img, path)
+
+    time.sleep(30)

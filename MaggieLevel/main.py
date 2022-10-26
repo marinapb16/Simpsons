@@ -21,15 +21,17 @@ while True:
     frase_simpson: str = datos[0]['quote']
     autor: str = datos[0]['character']
 
+    #creo un csv con frase y autor de todos ellos 
     my_dict = {'quote': frase_simpson, 'character':autor}
     with open('General/general.csv', 'a') as csvfile:
             w = csv.DictWriter(csvfile, my_dict.keys())
 
             w.writerow(my_dict)
 
-    #creamos bucle para clasificar según la frase sea de Lisa, Homer o del resto
+    #creamos bucle para clasificar según la frase sea de Lisa o de Homer
+    #creamos un csv dentro de sus propias carpetas
     if autor == 'Lisa Simpson':
-        my_dict = {'quote': frase_simpson, 'character':autor} #escribo sobre el csv
+        my_dict = {'quote': frase_simpson, 'character':autor} 
         with open('Lisa/lisa.csv', 'a') as csvfile:
             w = csv.DictWriter(csvfile, my_dict.keys())
 
@@ -43,7 +45,4 @@ while True:
             w.writerow(my_dict)
 
 
-    time.sleep(3) 
-
-
-#COMPROBAR QUE FUNCIONA AHORA Y METE FRASES DE LISA Y HOMER EN TODOS
+    time.sleep(30) #el programa realiza peticiones automáticas a la api cada 30seg 
