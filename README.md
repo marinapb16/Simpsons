@@ -19,8 +19,8 @@ Dentro de la carpeta se encuentran los siguientes ficheros:
 
 Pasos a seguir para levantar el contenedor docker:
 ```sh
-docker build -t maggie . #creamos imagen llamada simpsons
-docker run -it maggie #levantamos contenedor a partir de la imagen simpsons
+docker build -t maggie . #creamos imagen llamada maggie
+docker run -it maggie #levantamos contenedor a partir de la imagen maggie
 ```
 Con esto ya tenemos el contenedor en funcionamiento y ahora desde otra terminal escribimos:
 ```sh
@@ -52,8 +52,8 @@ Dentro de la carpeta se encuentran los siguientes ficheros:
 
 Pasos a seguir para levantar el contenedor docker:
 ```sh
-docker build -t lisa . #creamos imagen llamada simpsons
-docker run -it lisa #levantamos contenedor a partir de la imagen simpsons
+docker build -t lisa . #creamos imagen llamada lisa
+docker run -it lisa #levantamos contenedor a partir de la imagen lisa
 ```
 Con esto ya tenemos el contenedor en funcionamiento y ahora desde otra terminal escribimos:
 ```sh
@@ -80,4 +80,4 @@ conteopalabras.csv
 root@264bc3fb2ff3:/app/ConteoPalabras# tail -f conteopalabras.csv
 #accedemos al contenido del csv donde tenemos el conteo de las palabras que van saliendo
 ```
-Con esto ya podemos comprobar que el programa está creando carpetas por cada personaje y dentro de ellas un csv con las frases del personaje además de su imagen. Además se crea una carpeta ConteoPalabras donde dentro tiene un csv (conteopalabras.csv) donde me va almacenando esta cuenta de las palabras de las frases según se van haciendo requests a la api.
+Con esto ya podemos comprobar que el programa está creando carpetas por cada personaje y dentro de ellas un csv con las frases del personaje y su imagen. Además, se crea una carpeta ConteoPalabras donde dentro tiene un csv (conteopalabras.csv) donde me va almacenando la cuenta de las palabras de las frases según se van haciendo requests a la api.
